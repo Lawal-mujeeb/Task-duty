@@ -3,7 +3,6 @@ import AppRoutes from "./routes/AppRoutes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AuthProvider from "./store/AuthProvider";
 
-
 const queryClient = new QueryClient();
 function App() {
   return (

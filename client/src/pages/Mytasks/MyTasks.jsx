@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Navigate, NavLink, useNavigate } from "react-router";
+import { Navigate, NavLink, useNavigate } from "react-router"
+;
 
 // import AddTaskModal from "../Features/AddTaskModal";
 import TaskCard from "./TaskCard";
@@ -10,6 +11,8 @@ export default function MyTasks() {
   const handleNew = () => {
     navigate("/newtask");;
   };
+  
+
   const [tasks, setTasks] = useState([
     {
       id: 1,

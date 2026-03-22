@@ -25,7 +25,7 @@ export default function RootLayout() {
            
             {isEditPage ? (
               <li>
-                <NavLink to="/alltask">← All task</NavLink>
+                <NavLink to="/alltask"> All task</NavLink>
               </li>
             ) : (
               <>

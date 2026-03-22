@@ -7,13 +7,13 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import AuthLayouts from "../layouts/AuthLayouts";
 import EditTask from "../pages/Edittask/EditTask";
-import { useState } from "react";
 
 // import Login from "../pages/Login";
 
 
 export default function AppRoutes() {
-   const [tasks, setTasks] = useState([]);
+  
+  
   const routes = [
     {
         path: "/",
@@ -33,7 +33,8 @@ export default function AppRoutes() {
         },
         {
           path: "/edittask/:id",
-          element: <EditTask  tasks={tasks} setTasks={setTasks} />,
+          element: <EditTask   />,
+            // element: <EditTask  tasks={tasks} setTasks={setTasks} />,
         },
 
       ],

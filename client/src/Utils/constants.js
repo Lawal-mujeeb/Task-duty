@@ -1,0 +1,1 @@
+export const TASK_PRIORITY = ["Urgent", "Important", "Normal"];

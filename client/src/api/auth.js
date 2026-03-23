@@ -1,4 +1,4 @@
-import axiosInstance from "@/utils/axiosInstance";
+import axiosInstance from "../Utils/axiosInstance";
 
 export const registerUser = async (formData) => {
   return await axiosInstance.post("/auth/create", formData);

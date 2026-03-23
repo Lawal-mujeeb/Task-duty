@@ -19,7 +19,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:5173"], //allow request from client adress
+    origin: ["http://localhost:5173", "https://task-duty-frontend-rosy.vercel.app"], //allow request from client adress
     credentials: true, //allow cookie to be sent
     method: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"], //PERMITTED http methods
     optionsSuccessStatus: 200, //default status

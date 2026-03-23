@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TASK_PRIORITY } from "@/utils/constants";
+import { TASK_PRIORITY } from "../../Utils/constants";
 import { Link, NavLink} from "react-router";
 import { RiArrowDownSLine } from "@remixicon/react";
 

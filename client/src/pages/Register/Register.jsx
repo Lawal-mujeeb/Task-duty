@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { registerUser } from "@/api/auth";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
-import ErrorAlert from "@/components/ErrorAlert";
+import ErrorAlert from "../../Components/ErrorAlert";
 
 // import { useNavigate } from "react-router";
 import { validateRegisterSchema } from "../../Utils/formValidation";

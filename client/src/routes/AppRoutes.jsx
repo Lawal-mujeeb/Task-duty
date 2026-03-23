@@ -1,7 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import RootLayout from "../layouts/RootLayout";
 import Home from "../pages/Home/Home";
-// import MyTasks from "../pages/Mytasks/Mytasks";
 import NewTask from "../pages/Newtasks/NewTask";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";

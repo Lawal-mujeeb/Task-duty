@@ -7,7 +7,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import AuthLayouts from "../layouts/AuthLayouts";
 import EditTask from "../pages/Edittask/EditTask";
-import MyTasks from "../pages/Mytasks/Mytasks";
+import MyTasks from "../pages/Mytasks/MyTasks";
 
 
 // import Login from "../pages/Login";

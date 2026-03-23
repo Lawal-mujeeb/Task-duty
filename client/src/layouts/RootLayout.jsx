@@ -1,7 +1,6 @@
 import { Outlet, useLocation } from "react-router";
 import { NavLink } from "react-router";
 import { useAuth } from "../store";
-// import AuthProvider from "./store/AuthProvider";
 
 export default function RootLayout() {
   const location = useLocation();

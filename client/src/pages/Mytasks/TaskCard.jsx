@@ -7,10 +7,9 @@ import { RiEditBoxLine } from "@remixicon/react";
 export default function TaskCard({ task, tasks, setTasks }) {
   const navigate = useNavigate();
 
-  const handleEdit = () => {
-    navigate(`/edittask/${task.id}`); // navigate to the edit page
-  };
-  
+ const handleEdit = () => {
+  navigate(`/edittask/${task._id}`);
+};
 
 
   return (
@@ -24,7 +23,7 @@ export default function TaskCard({ task, tasks, setTasks }) {
                 : "text-green-500"
             }`}
           >
-            {task.priority}
+            {task.tag || task.priority}
           </span>
 
           <div className="card-actions flex gap-3 flex-wrap">

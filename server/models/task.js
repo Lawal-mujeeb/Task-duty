@@ -1,18 +1,25 @@
 import mongoose, { Schema, model } from "mongoose";
 
-const noteSchema = new Schema(
+const taskSchema = new Schema(
   {
     title: {
       type: String,
-      required: true,
+      required: [true, "Task title is required"],
+      trim: true,
     },
-    description: String,
-    tag: {
+    description: {
       type: String,
-      enum: ["low", "urgent ", "important "],
+      trim: true,
+    },
+    priority: {
+      type: String,
+      enum: ["low", "urgent", "important"], 
+      default: "low",
     },
   },
   { timestamps: true }
 );
-const Task = mongoose.models.Task || model("Task", noteSchema);
+
+const Task = mongoose.models.Task || model("Task", taskSchema);
+
 export default Task;

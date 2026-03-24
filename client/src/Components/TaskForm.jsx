@@ -1,23 +1,44 @@
-import { useState } from "react";
-import { TASK_PRIORITY } from "@/utils/constants";
+import { TASK_PRIORITY } from "@/Utils/constants";
+import { useState, useEffect } from "react";
+// import { TASK_PRIORITY } from "@/utils/constants";
 
 export default function TaskForm({ initialData, onSubmit, buttonText }) {
   const [formData, setFormData] = useState({
-    title: initialData?.title || "",
-    description: initialData?.description || "",
-    priority: initialData?.priority || "Urgent",
+    title: "",
+    description: "",
+    priority: "Urgent",
   });
 
+  // ✅ Populate form when editing
+  useEffect(() => {
+    if (initialData) {
+      setFormData({
+        title: initialData.title || "",
+        description: initialData.description || "",
+        priority: initialData.priority || initialData.tag || "Urgent",
+      });
+    }
+  }, [initialData]);
+
+  // ✅ Handle input change
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value,
-    });
+    }));
   };
 
+  // ✅ Submit form
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+
+    // simple validation
+    if (!formData.title.trim()) {
+      alert("Task title is required");
+      return;
+    }
+
+    onSubmit(formData); // send to parent (API call happens there)
   };
 
   return (
@@ -51,20 +72,20 @@ export default function TaskForm({ initialData, onSubmit, buttonText }) {
         />
       </div>
 
-      {/* TAGS / PRIORITY */}
+      {/* PRIORITY */}
       <div className="w-full mt-10 relative">
         <label className="absolute -top-2 left-4 bg-white px-1 text-sm text-gray-700 z-10">
           Tags
         </label>
 
-        {/* DISPLAY SELECTED PRIORITY */}
+        {/* Display selected priority */}
         <textarea
           value={formData.priority}
           readOnly
           className="w-full h-20 border border-gray-300 rounded-md p-4 pt-6 text-sm"
         />
 
-        {/* DROPDOWN */}
+        {/* Dropdown */}
         <div className="absolute top-2 right-2 dropdown dropdown-end">
           <div
             tabIndex={0}
@@ -103,7 +124,7 @@ export default function TaskForm({ initialData, onSubmit, buttonText }) {
           type="submit"
           className="w-full max-w-[600px] py-4 bg-purple-500 hover:bg-purple-600 text-white text-lg font-semibold rounded-lg"
         >
-          {buttonText}
+          {buttonText || "Submit"}
         </button>
       </div>
     </form>

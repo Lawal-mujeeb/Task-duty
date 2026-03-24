@@ -55,6 +55,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1/auth", userRoutes);
 app.use("/api/v1/task", taskRoutes);
 
+
 //assemble our api routes
 // app.use("/api/v1/auth", userRoutes); // we want to look into the user routes folder for the user routes file
 // app.use("/api/v1/patients", patientRoutes);

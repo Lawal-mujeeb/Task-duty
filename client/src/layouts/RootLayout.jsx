@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from "react-router";
 import { NavLink } from "react-router";
 import { useAuth } from "../store";
+import MobileNav from "@/Components/MobileNav";
 
 export default function RootLayout() {
   const location = useLocation();
@@ -12,9 +13,12 @@ export default function RootLayout() {
 
   const { accessToken } = useAuth();
   return (
-    <header className="bg-white min-h-screen ">
-      <nav className="w-full border-b-2 border-gray-300 mt-4">
-        <div className="flex justify-between items-center container mx-auto pb-4 max-w-[1100px] px-4 lg:px-0">
+    <>
+    <header className= "  z-50  bg-white min-h-screen ">
+      <nav className="w-full md:border-b-2 border-gray-300  mt-20 md:mt-4">
+       
+        <div className=" hidden md:flex justify-between items-center container mx-auto pb-4 max-w-[1100px] px-4 lg:px-0">
+        
           <NavLink to="/">
             <img src="/logo.svg" alt="logo" />
           </NavLink>
@@ -63,9 +67,11 @@ export default function RootLayout() {
             )}
           </ul>
         </div>
+           <MobileNav/>
       </nav>
 
       <Outlet />
     </header>
+    </>
   );
 }

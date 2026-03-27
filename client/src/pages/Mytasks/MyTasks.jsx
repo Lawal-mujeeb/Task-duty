@@ -1,33 +1,37 @@
-import { NavLink, useNavigate } from "react-router";
-import TaskCard from "./TaskCard";
+import { NavLink, useNavigate, useSearchParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { getTasks } from "@/api/task";
 import { LazyLoader } from "@/Components/LazyLoader";
-
-// ✅ use your API layer
+import Search from "@/Components/Search";
+import TaskCard from "./TaskCard";
 
 export default function MyTasks() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  const query = searchParams.get("query") || "";
 
   const handleNew = () => {
     navigate("/newtask");
   };
 
-  // ✅ FETCH TASKS FROM API FILE
+  // ✅ Fetch tasks using search query
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["tasks"],
-    queryFn: () => getTasks(),
+    queryKey: ["tasks", query],
+    queryFn: () => getTasks(query),
   });
 
-  
-
-  // adjust based on your response structure
   const tasks = data?.data || [];
 
   return (
     <>
+      {/* SEARCH BAR */}
+      <div className="mx-auto max-w-[1100px] px-4 mt-25 md:mt-6 flex justify-end">
+        <Search id="task-search" />
+      </div>
+
       {/* HEADER */}
-      <div className="mx-auto max-w-[1100px] px-4 mt-8 flex items-center justify-between font-semibold">
+      <div className="mx-auto max-w-[1100px] px-4 mt-6 flex items-center justify-between font-semibold">
         <h1 className="text-2xl font-semibold">My Task</h1>
 
         <button
@@ -39,20 +43,17 @@ export default function MyTasks() {
       </div>
 
       {/* STATES */}
-      <div className="px-4 mt-6">
+      <div className="mx-auto max-w-[1100px] px-4 mt-6">
         {isLoading && <LazyLoader />}
         {isError && <p>Error fetching tasks</p>}
 
         {!isLoading && tasks.length === 0 && (
-          <p>No tasks yet. Create one!</p>
+          <p>{query ? "No matching tasks found." : "No tasks yet. Create one!"}</p>
         )}
 
         {/* TASK LIST */}
         {tasks.map((task) => (
-          <TaskCard
-            key={task._id} // ✅ MongoDB id
-            task={task}
-          />
+          <TaskCard key={task._id} task={task} />
         ))}
 
         <NavLink
@@ -65,7 +66,6 @@ export default function MyTasks() {
     </>
   );
 }
-   
 
 
 // import { useState } from "react";

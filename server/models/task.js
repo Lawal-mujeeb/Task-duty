@@ -16,6 +16,11 @@ const taskSchema = new Schema(
       enum: ["Urgent", "Important"],
       default: "Urgent",
     },
+     owner: {
+      type: Schema.Types.ObjectId, // reference to User
+      ref: "User",
+      required: true,
+    },
   },
   { timestamps: true }
 );

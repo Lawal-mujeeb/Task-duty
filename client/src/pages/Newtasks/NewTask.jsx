@@ -3,13 +3,15 @@ import { createTask } from "../../api/task";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
+import { useAuth } from "@/store";
 
 export default function NewTask() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { accessToken } = useAuth();
 
   const mutation = useMutation({
-    mutationFn: createTask,
+    mutationFn: (data) => createTask(data, accessToken),
 
     onSuccess: () => {
       toast.success("Task created successfully");

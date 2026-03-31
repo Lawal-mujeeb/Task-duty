@@ -26,11 +26,11 @@ export default function TaskCard({ task, tasks, setTasks }) {
             {task.tag || task.priority}
           </span>
 
-          <div className="card-actions flex gap-3 flex-wrap">
+          <div className="card-actions flex flex-row md:gap-3 md:flex-wrap">
             {/* Replace modal with a button */}
             <button
               onClick={handleEdit}
-              className="btn flex items-center md:mt-5 gap-1 text-white bg-fuchsia-400 hover:text-blue-700"
+              className="btn flex items-center md:mt-5 gap-1 text-white bg-[#974FD0] hover:text-purple-700"
             >
               <RiEditBoxLine size={20} /> Edit
             </button>

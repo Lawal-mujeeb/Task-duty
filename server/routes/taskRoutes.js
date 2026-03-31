@@ -1,4 +1,5 @@
 
+
 import express from "express";
 import {
   createTask,
@@ -7,23 +8,24 @@ import {
   updateTask,
   deleteTask,
 } from "../controllers/taskControllers.js";
+import { verifyAuth } from "../middlewares/authenticate.js";
 
 const router = express.Router();
 
 // CREATE a new task
-router.post("/create", createTask);
+router.post("/create", verifyAuth, createTask);
 
 // GET all tasks (with optional search via query ?search=keyword)
-router.get("/", getTasks);
+router.get("/", verifyAuth, getTasks);
 
 // GET single task by id (for edit page)
-router.get("/:id", getSingleTask);
+router.get("/:id", verifyAuth, getSingleTask);
 
 // UPDATE a task by id
-router.patch("/update/:id", updateTask);
+router.patch("/update/:id", verifyAuth, updateTask);
 
 // DELETE a task by id
-router.delete("/delete/:id", deleteTask);
+router.delete("/delete/:id", verifyAuth, deleteTask);
 
 export default router;
 

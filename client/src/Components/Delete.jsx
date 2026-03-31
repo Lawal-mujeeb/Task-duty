@@ -4,14 +4,16 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import Modal from "./Modal";
 import { deleteTask } from "@/api/task";
+import { useAuth } from "../store";
 
 export default function DeleteTask({ task }) {
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState(null);
   const queryClient = useQueryClient();
+  const { accessToken } = useAuth();
 
   const mutation = useMutation({
-    mutationFn: () => deleteTask(task._id),
+    mutationFn: () => deleteTask(task._id, accessToken), // pass token for auth
     onSuccess: () => {
       toast.success("Task deleted successfully");
      
@@ -35,7 +37,7 @@ export default function DeleteTask({ task }) {
   return (
     <>
       <button
-        className="btn btn-outline btn-error bg-red-500 hover:bg-red-600 text-white w-full md:w-[150px] mt-5"
+        className="btn btn-outline  bg-white-500 hover:bg-red-600 text-[#974FD0] w-full md:w-[150px] mt-5"
         onClick={() => setIsOpen(true)}
       >
         <RiDeleteBinLine size={20} /> Delete

@@ -4,10 +4,12 @@ import { getTasks } from "@/api/task";
 import { LazyLoader } from "@/Components/LazyLoader";
 import Search from "@/Components/Search";
 import TaskCard from "./TaskCard";
+import { useAuth } from "@/store";
 
 export default function MyTasks() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const { accessToken } = useAuth();
 
   const query = searchParams.get("query") || "";
 
@@ -18,7 +20,7 @@ export default function MyTasks() {
   // ✅ Fetch tasks using search query
   const { data, isLoading, isError } = useQuery({
     queryKey: ["tasks", query],
-    queryFn: () => getTasks(query),
+    queryFn: () => getTasks(query, accessToken), // Pass accessToken for auth
   });
 
   const tasks = data?.data || [];
